@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using WeekOpdrachtSecurity.API.Enums;
 
 namespace WeekOpdrachtSecurity.API.Entities
 {
@@ -15,5 +16,11 @@ namespace WeekOpdrachtSecurity.API.Entities
 
         [JsonIgnore]
         public string Password { get; set; }
+
+        public bool IsBlocked { get; set; }
+
+        public bool IsAdmin { get; set; }
+
+        public UserTypeEnum UserType { get; set; }
     }
 }

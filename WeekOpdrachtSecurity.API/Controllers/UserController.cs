@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using WeekOpdrachtSecurity.API.Entities;
 using WeekOpdrachtSecurity.API.Models;
 using WeekOpdrachtSecurity.API.Services;
 
@@ -19,6 +20,7 @@ namespace WeekOpdrachtSecurity.API.Controllers
             _userService = userService;
         }
 
+        
         [HttpPost("authenticate")]
         public IActionResult Authenticate(AuthenticateRequest model)
         {
@@ -26,6 +28,31 @@ namespace WeekOpdrachtSecurity.API.Controllers
 
             if (response == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
+
+            return Ok(response);
+        }
+
+        [Authorize]
+        [HttpPost("Register")]
+        public IActionResult Register(RegisterRequest newuserrequest)
+        {
+
+            var response = _userService.Register(newuserrequest);
+
+            if (response == null)
+                return BadRequest(new { message = "Please fill in all fields" });
+
+            return Ok(response);
+        }
+
+        [Authorize]
+        [HttpPost("BlockOrUnblockUser")]
+        public IActionResult BlockOrUnblockUser(string username)
+        {
+            var response = _userService.BlockOrUnblockUser(username);
+
+            if (response == null)
+                return BadRequest(new { message = "Please fill in all fields" });
 
             return Ok(response);
         }
