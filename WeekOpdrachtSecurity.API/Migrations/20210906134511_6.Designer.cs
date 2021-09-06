@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WeekOpdrachtSecurity.API.DbContexts;
 
 namespace WeekOpdrachtSecurity.API.Migrations
 {
     [DbContext(typeof(WeekOpdrachtDbContext))]
-    partial class WeekOpdrachtDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210906134511_6")]
+    partial class _6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -130,7 +132,7 @@ namespace WeekOpdrachtSecurity.API.Migrations
                             IsBlocked = false,
                             LastName = "Test2",
                             Password = "test",
-                            Privilages = 2,
+                            Privilages = 0,
                             UserType = 3,
                             Username = "test2"
                         },
@@ -142,7 +144,7 @@ namespace WeekOpdrachtSecurity.API.Migrations
                             IsBlocked = true,
                             LastName = "Test3",
                             Password = "test",
-                            Privilages = 1,
+                            Privilages = 0,
                             UserType = 1,
                             Username = "test3"
                         },
@@ -166,7 +168,7 @@ namespace WeekOpdrachtSecurity.API.Migrations
                             IsBlocked = false,
                             LastName = "Admin",
                             Password = "admin",
-                            Privilages = 2,
+                            Privilages = 0,
                             UserType = 0,
                             Username = "admin"
                         });

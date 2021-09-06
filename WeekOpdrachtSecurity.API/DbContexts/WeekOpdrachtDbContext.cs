@@ -23,11 +23,11 @@ namespace WeekOpdrachtSecurity.API.DbContexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().HasData(
-            new User { Id = 1, FirstName = "Test1", LastName = "Test1", Username = "test", Password = "test", IsBlocked = false, UserType = UserTypeEnum.Civilian, IsAdmin = false },
-            new User { Id = 2, FirstName = "Test2", LastName = "Test2", Username = "test2", Password = "test", IsBlocked = false, UserType = UserTypeEnum.FBI, IsAdmin = false },
-            new User { Id = 3, FirstName = "Test3", LastName = "Test3", Username = "test3", Password = "test", IsBlocked = true, UserType = UserTypeEnum.GovermentEmployee, IsAdmin = false },
-            new User { Id = 4, FirstName = "Test4", LastName = "Test4", Username = "test4", Password = "test", IsBlocked = false, UserType = UserTypeEnum.SecretAgent, IsAdmin = false },
-            new User { Id = 5, FirstName = "Admin", LastName = "Admin", Username = "admin", Password = "admin", IsBlocked = false, UserType = UserTypeEnum.Civilian, IsAdmin = true }
+            new User { Id = 1, FirstName = "Test1", LastName = "Test1", Username = "test", Password = "test", IsBlocked = false, UserType = UserTypeEnum.Civilian, IsAdmin = false, Privilages = SecretClassificationEnum.topsecret },
+            new User { Id = 2, FirstName = "Test2", LastName = "Test2", Username = "test2", Password = "test", IsBlocked = false, UserType = UserTypeEnum.FBI, IsAdmin = false, Privilages = SecretClassificationEnum.gevoeligeinformatie },
+            new User { Id = 3, FirstName = "Test3", LastName = "Test3", Username = "test3", Password = "test", IsBlocked = true, UserType = UserTypeEnum.GovermentEmployee, IsAdmin = false, Privilages = SecretClassificationEnum.staatsgeheim },
+            new User { Id = 4, FirstName = "Test4", LastName = "Test4", Username = "test4", Password = "test", IsBlocked = false, UserType = UserTypeEnum.SecretAgent, IsAdmin = false, Privilages = SecretClassificationEnum.topsecret },
+            new User { Id = 5, FirstName = "Admin", LastName = "Admin", Username = "admin", Password = "admin", IsBlocked = false, UserType = UserTypeEnum.Civilian, IsAdmin = true,  Privilages = SecretClassificationEnum.gevoeligeinformatie }
             );
 
             modelBuilder.Entity<Secret>().HasData(

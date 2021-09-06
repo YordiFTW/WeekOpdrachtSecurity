@@ -22,5 +22,7 @@ namespace WeekOpdrachtSecurity.API.Entities
         public bool IsAdmin { get; set; }
 
         public UserTypeEnum UserType { get; set; }
+
+        public SecretClassificationEnum Privilages { get; set; }
     }
 }

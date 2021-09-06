@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using WeekOpdrachtSecurity.API.Entities;
+using WeekOpdrachtSecurity.API.Enums;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public class AuthorizeAttribute : Attribute, IAuthorizationFilter
@@ -13,10 +14,18 @@ public class AuthorizeAttribute : Attribute, IAuthorizationFilter
     public void OnAuthorization(AuthorizationFilterContext context)
     {
         var user = (User)context.HttpContext.Items["User"];
-        if (user == null || user.IsAdmin == false)
+        if (user == null)
         {
-            // not logged in or not admin
-            context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            // not logged in
+            context.Result = new JsonResult(new { message = "Not Logged In" }) { StatusCode = StatusCodes.Status401Unauthorized };
+        }
+
+        if (user.IsAdmin == false)
+        {
+            // not admin
+            context.Result = new JsonResult(new { message = "No Admin Privileges" }) { StatusCode = StatusCodes.Status403Forbidden };
         }
     }
+
+    
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WeekOpdrachtSecurity.API.DbContexts;
 using WeekOpdrachtSecurity.API.Entities;
+using WeekOpdrachtSecurity.API.Enums;
 
 namespace WeekOpdrachtSecurity.API.Repos
 {
@@ -22,7 +23,14 @@ namespace WeekOpdrachtSecurity.API.Repos
             return _mBDbContext.Secrets;
         }
 
-        
-        
+        public IEnumerable<Secret> GetSecretByClassification()
+        {
+            
+
+            return _mBDbContext.Secrets.Where(x => x.Classification == SecretClassificationEnum.topsecret);
+
+
+        }
+
     }
 }

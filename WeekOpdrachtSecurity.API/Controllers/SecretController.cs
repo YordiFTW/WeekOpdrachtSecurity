@@ -22,7 +22,7 @@ namespace WeekOpdrachtSecurity.API.Controllers
 
 
 
-        //[Authorize]
+        [Authorize]
         [HttpGet]
         public IActionResult GetAll()
         {
