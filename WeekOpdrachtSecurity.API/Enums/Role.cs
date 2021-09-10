@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WeekOpdrachtSecurity.API.Enums
 {
-    public enum UserTypeEnum
+    public enum Role
     {
         Civilian,
         GovermentEmployee,

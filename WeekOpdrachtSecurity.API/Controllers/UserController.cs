@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using WeekOpdrachtSecurity.API.Entities;
+using WeekOpdrachtSecurity.API.Helpers;
 using WeekOpdrachtSecurity.API.Models;
 using WeekOpdrachtSecurity.API.Services;
 

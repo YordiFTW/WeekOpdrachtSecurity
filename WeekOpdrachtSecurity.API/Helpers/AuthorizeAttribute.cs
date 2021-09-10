@@ -8,24 +8,39 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using WeekOpdrachtSecurity.API.Entities;
 using WeekOpdrachtSecurity.API.Enums;
 
-[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-public class AuthorizeAttribute : Attribute, IAuthorizationFilter
+namespace WeekOpdrachtSecurity.API.Helpers
 {
-    public void OnAuthorization(AuthorizationFilterContext context)
+    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
+    public class AuthorizeAttribute : Attribute, IAuthorizationFilter
     {
-        var user = (User)context.HttpContext.Items["User"];
-        if (user == null)
-        {
-            // not logged in
-            context.Result = new JsonResult(new { message = "Not Logged In" }) { StatusCode = StatusCodes.Status401Unauthorized };
-        }
+        
 
-        if (user.IsAdmin == false)
+        public void OnAuthorization(AuthorizationFilterContext context )
         {
-            // not admin
-            context.Result = new JsonResult(new { message = "No Admin Privileges" }) { StatusCode = StatusCodes.Status403Forbidden };
+            var user = (User)context.HttpContext.Items["User"];
+            if (user == null)
+            {
+                // not logged in
+                context.Result = new JsonResult(new { message = "Not Logged In" }) { StatusCode = StatusCodes.Status401Unauthorized };
+            }
+
+            else if (user.IsBlocked == true)
+            {
+                context.Result = new JsonResult(new { message = "You Are Blocked" }) { StatusCode = StatusCodes.Status403Forbidden };
+
+            }
+
+            else if (user.Role == Role.Civilian)
+            {
+                context.Result = new JsonResult(new { message = "No Privileges" }) { StatusCode = StatusCodes.Status403Forbidden };
+
+            }
+
+            //else if (user.IsAdmin == false)
+            //{
+            //    // not admin
+            //    context.Result = new JsonResult(new { message = "No Admin Privileges" }) { StatusCode = StatusCodes.Status403Forbidden };
+            //}
         }
     }
-
-    
 }

@@ -26,6 +26,6 @@ namespace WeekOpdrachtSecurity.API.Models
 
         [Required]
 
-        public UserTypeEnum UserType { get; set; }
+        public Role UserType { get; set; }
     }
 }

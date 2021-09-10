@@ -67,7 +67,7 @@ namespace WeekOpdrachtSecurity.API.Services
             user.LastName = newuserrequest.LastName;
             //user.IsAdmin = newuserrequest.IsAdmin;
             //user.IsBlocked = newuserrequest.IsBlocked;
-            user.UserType = newuserrequest.UserType;
+            user.Role = newuserrequest.UserType;
 
             _userRepo.AddUser(user);
 
